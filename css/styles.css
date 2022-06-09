@@ -63,6 +63,7 @@ img {
   --primary-text-color: #757575;
   --title-text-color: #212121;
   --brand-color: #2196f3;
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /*стилізація всього документу*/
@@ -94,8 +95,6 @@ img {
   line-height: 1.19;
   text-decoration: none;
   margin-right: 93px;
-
-
 }
 
 /*стилизація чорної частини логотипу */
@@ -123,6 +122,7 @@ img {
 
 /*стилізація навігації сайту*/
 .site-nav .link {
+  position: relative;
   text-decoration: none;
   color: #212121;
   font-weight: 500;
@@ -131,6 +131,7 @@ img {
   letter-spacing: 0.02em;
   padding-top: 32px;
   padding-bottom: 32px;
+  transition: color 250ms var(--timing-function);
 }
 
 .site-nav .link:hover,
@@ -143,17 +144,15 @@ img {
 }
 
 .site-nav .link.curret::after {
+  position: absolute;
   content: '';
   width: 100%;
   height: 4px;
   border-radius: 2px;
   background-color: var(--brand-color);
   display: block;
-
+  bottom: -0.5px;
 }
-
-
-
 
 /*стилізація навігаціі контактів*/
 .contact-nav .link {
@@ -165,6 +164,7 @@ img {
   text-decoration: none;
   display: flex;
   align-items: center;
+  transition: color 250ms var(--timing-function);
 }
 
 .contact-nav-item:not(:last-child) {
@@ -307,6 +307,29 @@ img {
   margin-left: 30px;
 }
 
+.work-thumb {
+  position: relative;
+}
+
+.work-content {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: calc(16 / 14);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: rgba(47, 48, 58, 0.8);
+}
+
 /*стилізація секції наша команда*/
 .section-team {
   background-color: #f5f4fa;
@@ -323,7 +346,6 @@ img {
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 0px 0px 4px 4px;
-
   background-color: #ffffff;
 }
 
@@ -371,6 +393,8 @@ img {
   align-items: center;
   justify-content: center;
   color: #afb1b8;
+
+  transition: background-color 250ms var(--timing-function), color 250ms var(--timing-function);
 }
 
 .team-soc-icom {
@@ -419,6 +443,7 @@ img {
   border: 1px solid #afb1b8;
   border-radius: 4px;
   color: #afb1b8;
+  transition: color 250ms var(--timing-function), border 250ms var(--timing-function);
 }
 
 .client-icon {
@@ -469,6 +494,7 @@ img {
   line-height: 1.72;
   text-decoration: none;
   display: block;
+  transition: color 250ms var(--timing-function);
 }
 
 .footer-list-item:not(:last-child) {
@@ -518,6 +544,7 @@ img {
   align-items: center;
   justify-content: center;
   color: #ffffff;
+  transition: background-color 250ms var(--timing-function);
 }
 
 .footer-soc-icon {
@@ -563,6 +590,8 @@ img {
   padding: 6px 22px;
   border: transparent;
   border-radius: 4px;
+
+  transition: background-color 250ms var(--timing-function), box-shadow 250ms var(--timing-function);
 }
 
 .portfolio-btn:hover,
@@ -590,17 +619,14 @@ img {
 .portfolio-link {
   text-decoration: none;
   display: block;
-
+  transition: box-shadow 250ms var(--timing-function);
 }
 
 .portfolio-link:hover,
 .portfolio-link:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
-
 }
-
-
 
 .portfolio-list .text {
   font-size: 16px;
@@ -611,4 +637,88 @@ img {
 .portfolio-content {
   padding: 20px 24px;
   border: 1px solid #eeeeee;
+}
+
+.portfolio-thump {
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  padding-top: 63px;
+  padding-left: 24px;
+  padding-bottom: 63px;
+  padding-right: 24px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 150, 243, 0.9);
+  font-size: 18px;
+  line-height: calc(28 / 18);
+  letter-spacing: 0.03em;
+  color: #ffffff;
+
+  transform: translateY(100%);
+  transition: transform 250ms var(--timing-function);
+}
+
+.portfolio-link:hover .overlay-text,
+.portfolio-link:focus .overlay-text {
+  transform: translateY(0);
+}
+
+/* --------стилізація модального вікна------  */
+
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  transition: opacity 250ms var(--timing-function), visibility 250ms var(--timing-function);
+}
+
+.backdrop.is-hidden .modal{
+  transform: translate(-50%, 50%) scale(0);
+}
+
+
+.modal {
+  position: absolute;
+  width: 528px;
+  min-height: 581px;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms var(--timing-function);
+}
+
+.modal-close-btn {
+  position: absolute;
+  display: flex;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+
+  align-items: center;
+  justify-content: center;
+}
+
+.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
