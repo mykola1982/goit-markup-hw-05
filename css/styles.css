@@ -648,7 +648,6 @@ img {
   position: absolute;
   top: 0;
   left: 0;
-
   padding-top: 63px;
   padding-left: 24px;
   padding-bottom: 63px;
@@ -681,10 +680,9 @@ img {
   transition: opacity 250ms var(--timing-function), visibility 250ms var(--timing-function);
 }
 
-.backdrop.is-hidden .modal{
+.backdrop.is-hidden .modal {
   transform: translate(-50%, 50%) scale(0);
 }
-
 
 .modal {
   position: absolute;
@@ -711,7 +709,6 @@ img {
   border-radius: 50%;
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.1);
-
 
   align-items: center;
   justify-content: center;
